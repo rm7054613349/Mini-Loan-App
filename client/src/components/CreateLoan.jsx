@@ -14,7 +14,6 @@ const CreateLoan = () => {
       if (!amount || !term) throw "Fill all details!";
       await axios.post(
         "http://localhost:5000/api/v1/loans/create",
-        // http://localhost:5000
         { amount, terms: term },
         {
           headers: {

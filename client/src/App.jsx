@@ -22,7 +22,7 @@ function App() {
     try {
       console.log(token);
       const userDetails = await axios.get(
-        "https://mini-loan-app-pcbe.onrender.com/api/v1/auth/",
+        " http://localhost:5000/api/v1/auth/",
         {
           headers: {
             "Content-Type": "application/json",

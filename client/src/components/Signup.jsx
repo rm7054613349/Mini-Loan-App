@@ -29,7 +29,7 @@ const Signup = () => {
       setToken(user.data.token);
       setLoggedIn(true);
       localStorage.setItem("token", user.data.token);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       alert(`Can't create account!\nError: ${error}`);
