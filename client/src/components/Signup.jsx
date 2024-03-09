@@ -7,31 +7,32 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setLoggedIn, setToken, setUser } = useContext(AuthContext);
+  //   const { setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { setLoggedIn, setToken, setUser } = useContext(AuthContext);
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+    console.log("hi");
     try {
-      if (!email || !password) {
-        throw new Error("Please fill all fields!");
-      }
-
-      const user = await axios.post("http://localhost:5000/api/v1/auth/signup", {
-        email,
-        password,
-        name,
-      });
-
+      e.preventDefault();
+      if (!email || !password) throw "Please fill all fields!";
+      const user = await axios.post(
+        "http://localhost:5000/api/v1/auth/signup",
+        {
+          email,
+          password,
+          name,
+        }
+      );
       setUser(user.data.user);
       setToken(user.data.token);
       setLoggedIn(true);
       localStorage.setItem("token", user.data.token);
-      navigate("/login"); // Navigate to the login page after successful signup
+      navigate("/");
     } catch (error) {
       console.error(error);
-      alert(`Can't create account!\nError: ${error.message}`);
+      alert(`Can't create account!\nError: ${error}`);
     }
   };
 
@@ -78,7 +79,7 @@ const Signup = () => {
           </div>
           <button
             type="button"
-            onClick={handleSignup}
+            onClick={(e) => handleSignup(e)}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200"
           >
             Signup
